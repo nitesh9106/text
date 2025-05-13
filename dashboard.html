@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thakkar Films Admin - Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Mobile menu toggle button -->
+        <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="logo">
+                <h2>Thakkar Films</h2>
+                <div class="close-sidebar" id="close-sidebar">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li class="active"><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="create-client.html"><i class="fas fa-user-plus"></i> Create Client</a></li>
+                <li><a href="manage-clients.html"><i class="fas fa-users"></i> Manage Clients</a></li>
+                <li><a href="upload-photos.html"><i class="fas fa-upload"></i> Upload Photos</a></li>
+                <li><a href="users.html"><i class="fas fa-user-friends"></i> App Users</a></li>
+                <li class="logout"><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <div class="header-left">
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="user-info">
+                    <span id="admin-email">admin@example.com</span>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-info">
+                        <h3>Total Clients</h3>
+                        <p id="total-clients">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-images"></i></div>
+                    <div class="stat-info">
+                        <h3>Total Photos</h3>
+                        <p id="total-photos">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="stat-info">
+                        <h3>Active Clients</h3>
+                        <p id="active-clients">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-user-friends"></i></div>
+                    <div class="stat-info">
+                        <h3>Registered Users</h3>
+                        <p id="registered-users">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h2>Quick Actions</h2>
+                <div class="action-buttons">
+                    <a href="create-client.html" class="action-btn">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Create Client</span>
+                    </a>
+                    <a href="upload-photos.html" class="action-btn">
+                        <i class="fas fa-upload"></i>
+                        <span>Upload Photos</span>
+                    </a>
+                    <a href="users.html" class="action-btn">
+                        <i class="fas fa-user-friends"></i>
+                        <span>Manage Users</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Recent Clients -->
+            <div class="recent-section">
+                <h2>Recent Clients</h2>
+                <div class="table-container responsive-table">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Client Code</th>
+                                <th>Bride & Groom</th>
+                                <th class="hide-on-mobile">Wedding Date</th>
+                                <th class="hide-on-mobile">End Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-clients-table">
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-nav" id="mobile-bottom-nav">
+        <a href="dashboard.html" class="mobile-nav-item active">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="create-client.html" class="mobile-nav-item">
+            <i class="fas fa-user-plus"></i>
+            <span>Create</span>
+        </a>
+        <a href="manage-clients.html" class="mobile-nav-item">
+            <i class="fas fa-users"></i>
+            <span>Clients</span>
+        </a>
+        <a href="upload-photos.html" class="mobile-nav-item">
+            <i class="fas fa-upload"></i>
+            <span>Upload</span>
+        </a>
+        <a href="users.html" class="mobile-nav-item">
+            <i class="fas fa-user-friends"></i>
+            <span>Users</span>
+        </a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>

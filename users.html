@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thakkar Films Admin - App Users</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>Thakkar Films</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="create-client.html"><i class="fas fa-user-plus"></i> Create Client</a></li>
+                <li><a href="manage-clients.html"><i class="fas fa-users"></i> Manage Clients</a></li>
+                <li><a href="upload-photos.html"><i class="fas fa-upload"></i> Upload Photos</a></li>
+                <li class="active"><a href="users.html"><i class="fas fa-user-friends"></i> App Users</a></li>
+                <li class="logout"><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Registered App Users</h1>
+                <div class="user-info">
+                    <span id="admin-email">admin@example.com</span>
+                </div>
+            </div>
+
+            <div class="filters">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search users...">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filter-options">
+                    <select id="sort-filter">
+                        <option value="created_at_desc">Newest First</option>
+                        <option value="created_at_asc">Oldest First</option>
+                        <option value="name_asc">Name (A-Z)</option>
+                        <option value="name_desc">Name (Z-A)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="users-grid" id="users-grid">
+                <!-- User cards will be populated by JavaScript -->
+            </div>
+
+            <div class="pagination">
+                <button id="prev-page" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+                <span id="page-info">Page 1 of 1</span>
+                <button id="next-page" disabled>Next <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Details Modal -->
+    <div class="modal" id="user-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>User Details</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <img id="modal-user-avatar" src="https://via.placeholder.com/150" alt="User Avatar">
+                    </div>
+                    <div class="user-details">
+                        <div class="info-row">
+                            <span class="info-label">Name:</span>
+                            <span id="modal-user-name" class="info-value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Email:</span>
+                            <span id="modal-user-email" class="info-value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Phone:</span>
+                            <span id="modal-user-phone" class="info-value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Joined:</span>
+                            <span id="modal-user-joined" class="info-value"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/user-utils.js"></script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>

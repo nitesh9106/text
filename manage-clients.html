@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thakkar Films Admin - Manage Clients</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>Thakkar Films</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="create-client.html"><i class="fas fa-user-plus"></i> Create Client</a></li>
+                <li class="active"><a href="manage-clients.html"><i class="fas fa-users"></i> Manage Clients</a></li>
+                <li><a href="upload-photos.html"><i class="fas fa-upload"></i> Upload Photos</a></li>
+                <li><a href="users.html"><i class="fas fa-user-friends"></i> App Users</a></li>
+                <li class="logout"><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Manage Clients</h1>
+                <div class="user-info">
+                    <span id="admin-email">admin@example.com</span>
+                </div>
+            </div>
+
+            <div class="filters">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search clients...">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filter-options">
+                    <select id="status-filter">
+                        <option value="all">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="expired">Expired</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Client Code</th>
+                            <th>Bride & Groom</th>
+                            <th>Wedding Date</th>
+                            <th>End Date</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clients-table">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <button id="prev-page" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+                <span id="page-info">Page 1 of 1</span>
+                <button id="next-page" disabled>Next <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Client Modal -->
+    <div class="modal" id="edit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Client</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="edit-client-form">
+                    <input type="hidden" id="edit-client-id">
+                    <input type="hidden" id="edit-client-code">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit-bride-name">Bride Name</label>
+                            <input type="text" id="edit-bride-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-groom-name">Groom Name</label>
+                            <input type="text" id="edit-groom-name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit-wedding-date">Wedding Date</label>
+                            <input type="date" id="edit-wedding-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-end-date">End Date</label>
+                            <input type="date" id="edit-end-date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-location">Location</label>
+                        <input type="text" id="edit-location" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="save-client-btn">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="delete-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Confirm Deletion</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete client <span id="delete-client-name"></span>?</p>
+                <p class="warning">This will permanently delete all photos and data associated with this client.</p>
+                <div class="action-buttons">
+                    <button id="confirm-delete" class="danger-btn">Delete</button>
+                    <button id="cancel-delete" class="secondary-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Client Modal -->
+    <div class="modal" id="view-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Client Details</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="client-details">
+                    <div class="client-info-section">
+                        <h3>Client Information</h3>
+                        <div class="info-row">
+                            <span class="info-label">Client Code:</span>
+                            <span id="view-client-code" class="info-value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Bride Name:</span>
+                            <span id="view-bride-name" class="info-value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Groom Name:</span>
+                            <span id="view-groom-name" class="info-value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Wedding Date:</span>
+                            <span id="view-wedding-date" class="info-value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">End Date:</span>
+                            <span id="view-end-date" class="info-value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Location:</span>
+                            <span id="view-location" class="info-value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Status:</span>
+                            <span id="view-status" class="info-value"></span>
+                        </div>
+                    </div>
+                    <div class="qr-section">
+                        <h3>Gallery QR Code</h3>
+                        <div id="view-qrcode"></div>
+                        <p>URL: <span id="view-gallery-url"></span></p>
+                        <button id="download-view-qr" class="secondary-btn"><i class="fas fa-download"></i> Download QR Code</button>
+                    </div>
+                </div>
+                <div class="photo-preview-section">
+                    <h3>Photos (<span id="photo-count">0</span>)</h3>
+                    <div class="photo-grid" id="photo-grid">
+                        <!-- Photos will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode.js@1.0.0/qrcode.min.js"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/qr.js"></script>
+    <script src="js/manage-clients.js"></script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>

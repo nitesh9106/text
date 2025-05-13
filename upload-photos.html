@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thakkar Films Admin - Upload Photos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>Thakkar Films</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="create-client.html"><i class="fas fa-user-plus"></i> Create Client</a></li>
+                <li><a href="manage-clients.html"><i class="fas fa-users"></i> Manage Clients</a></li>
+                <li class="active"><a href="upload-photos.html"><i class="fas fa-upload"></i> Upload Photos</a></li>
+                <li><a href="users.html"><i class="fas fa-user-friends"></i> App Users</a></li>
+                <li class="logout"><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Upload Wedding Photos</h1>
+                <div class="user-info">
+                    <span id="admin-email">admin@example.com</span>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <form id="upload-form">
+                    <div class="form-group">
+                        <label for="client-select"><i class="fas fa-users"></i> Select Client</label>
+                        <select id="client-select" required>
+                            <option value="">-- Select a client --</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    
+                    <div class="upload-container">
+                        <div class="dropzone" id="dropzone">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & drop photos here or click to browse</p>
+                            <input type="file" id="file-input" multiple accept="image/*" style="display: none;">
+                        </div>
+                        
+                        <div class="selected-files" id="selected-files">
+                            <h3>Selected Photos (<span id="file-count">0</span>)</h3>
+                            <div class="file-list" id="file-list">
+                                <!-- Files will be listed here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="compression-settings">
+                            <label>Compression Level:</label>
+                            <div class="range-container">
+                                <input type="range" id="compression-level" min="50" max="100" value="70">
+                                <span id="compression-value">70%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" id="upload-btn" disabled>Upload Photos</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="progress-container" id="progress-container" style="display: none;">
+                <h3>Upload Progress</h3>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <p id="progress-text">0%</p>
+                <p id="upload-status">Preparing files...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.0/dist/browser-image-compression.js"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/upload.js"></script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thakkar Films Admin - Create Client</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>Thakkar Films</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li class="active"><a href="create-client.html"><i class="fas fa-user-plus"></i> Create Client</a></li>
+                <li><a href="manage-clients.html"><i class="fas fa-users"></i> Manage Clients</a></li>
+                <li><a href="upload-photos.html"><i class="fas fa-upload"></i> Upload Photos</a></li>
+                <li><a href="users.html"><i class="fas fa-user-friends"></i> App Users</a></li>
+                <li class="logout"><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Create New Client</h1>
+                <div class="user-info">
+                    <span id="admin-email">admin@example.com</span>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <form id="create-client-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bride-name"><i class="fas fa-female"></i> Bride Name</label>
+                            <input type="text" id="bride-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="groom-name"><i class="fas fa-male"></i> Groom Name</label>
+                            <input type="text" id="groom-name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="wedding-date"><i class="fas fa-calendar"></i> Wedding Date</label>
+                            <input type="date" id="wedding-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="end-date"><i class="fas fa-calendar-times"></i> End Date</label>
+                            <input type="date" id="end-date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="location"><i class="fas fa-map-marker-alt"></i> Location</label>
+                        <input type="text" id="location" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="create-client-btn">Create Client</button>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" id="test-connection-btn" style="background-color: #8338ec;">Test Supabase Connection</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="content-card" id="qr-container" style="display: none;">
+                <h2>Client Created Successfully!</h2>
+                <div class="client-info">
+                    <p><strong>Client Code:</strong> <span id="client-code"></span></p>
+                    <p><strong>Bride & Groom:</strong> <span id="client-names"></span></p>
+                </div>
+                <div class="qr-section">
+                    <h3>QR Code for Client Gallery</h3>
+                    <div id="qrcode"></div>
+                    <p>URL: <span id="gallery-url"></span></p>
+                    <button id="download-qr" class="secondary-btn"><i class="fas fa-download"></i> Download QR Code</button>
+                </div>
+                <div class="action-buttons">
+                    <button id="create-another" class="secondary-btn"><i class="fas fa-plus"></i> Create Another Client</button>
+                    <a href="dashboard.html" class="secondary-btn"><i class="fas fa-home"></i> Back to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode.js@1.0.0/qrcode.min.js"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/qr.js"></script>
+    <script src="js/create-client.js"></script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>
